@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Employee_Record.Models.EmpRecord>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="calcDetail" id="anCalcDetail">
+
+    @*@using static Views_Employees_Display*@
+    @{Html.Partial("_DisplayDetails");}
+
+</div>
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { @Id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { @Id = item.Id })
+                    @Html.ActionLink("Delete", "Delete", new { @Id = item.Id })
+
+
+
+
+                </td>
+
+                @*<button data-url='@Html.Action("Details", "Users", new { Idd = item.Id_IN })' id="js-reload-details">@Html.DisplayFor(modelItem => item.DisplayName)</button>*@
+                @*@Html.ActionLink(item.DisplayName, "Detail", new { id = item.user_id_IN }, new { onclick = "renderPartial();" })*@
+
+
+                @*<button id="anCalcBtn" class="calcBtn" name="anSubmitBtn" value="Calculate" title="Calculate your calculation">Details</button>*@
+
+
+
+
+
+            </tr>
+        }
+    </tbody>
+
+</table>
+<input type="button" id="anCalcBtn" value="Details"></>
+
+
+<script>
+    $(document).on('click', '#anCalcBtn', function(e){
+        $('#anCalcDetail').load('/Employees/test/');
+</script>
+

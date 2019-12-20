@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+<table>
+    <thead>
+        <tr> <th>Method</th>  <th>Action</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Http Get</td>
+            <td><a href="javascript:;" onclick="GetData();">Click to Get</a></td>
+        </tr>
+        <tr>
+            <td>Http Post</td>
+            <td><a href="javascript:;" onclick="PostData();">Click to Post</a></td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+<script type="text/javascript">
+    function GetData() {
+        $.ajax({
+            type: 'GET',
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            url: "../Home/GetData" + "?test=1",
+            success: function (data) { alert('Successfully get method executed.') },
+            error: function (a, jqXHR, exception) { }
+        });
+    }
+    function PostData() {
+        $.ajax({
+            type: 'POST',
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            url: "../Home/PostData",
+            data: "{ 'test': '2'}",
+            success: function (data) { alert(data) },
+            error: function (a, jqXHR, exception) { }
+        });
+    }
+</script>
+
+<style type="text/css">
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    tr:nth-of-type(odd) {
+        background: #eee;
+    }
+
+    th {
+        background: #333;
+        color: white;
+        font-weight: bold;
+    }
+
+    td, th {
+        padding: 6px;
+        border: 1px solid #ccc;
+        text-align: left;
+    }
+</style>
